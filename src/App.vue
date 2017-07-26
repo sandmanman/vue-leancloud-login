@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" id="app">
+    <div class="wrapper">
 
         <h1>{{msg}}</h1>
 
@@ -17,6 +17,6 @@
     }
 </script>
 
-<style lang="less">
+<style>
     
 </style>
