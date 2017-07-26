@@ -8,6 +8,6 @@
     }
 </script>
 
-<style>
-    
+<style lang="scss">
+    @import './assets/css/app';
 </style>

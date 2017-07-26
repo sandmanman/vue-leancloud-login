@@ -1,0 +1,41 @@
+//
+// 登录注册
+//
+.auth-wrapper {
+    min-height: 100%;
+
+    display: flex;
+
+    background-color: #f9f9f9;
+}
+
+.auth-form-group {
+    width: 100%;
+
+    flex-wrap: wrap;
+
+    .card-cover-img {
+        padding: 30px;
+        min-height: 160px;
+
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .quick-link {
+        text-decoration: none;
+    }
+    .card-title {
+        margin: 0;
+
+        color: #fff;
+        font-size: 36px;
+        font-weight: 400;
+    }
+    .card-content {
+        padding: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+}

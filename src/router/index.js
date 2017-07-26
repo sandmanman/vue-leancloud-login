@@ -5,28 +5,32 @@ import Home from '../pages/home'
 const routers = [
     {
         path: '/',
-        meta: {
-            title: '主页'
-        },
-        component: Home
-    },{
-        path: '/home',
-        meta: {
-            title: '主页'
-        },
-        component: Home
-    },{
-        path: '/login',
+        name: 'login',
+        component: Login,
         meta: {
             title: '登录'
-        },
-        component: Login
+        }
+    },{
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+            title: '登录'
+        }
     },{
         path: '/signup',
+        name: 'signup',
+        component: SignUp,
         meta: {
             title: '注册'
-        },
-        component: SignUp
+        }
+    },{
+        path: '/home',
+        name: 'home',
+        component: Home,
+        meta: {
+            title: '主页'
+        }
     }
 ]
 

@@ -27,18 +27,25 @@ const RouterConfig = {
 const router = new VueRouter(RouterConfig)
 
 // router.beforeEach((to, from, next) => {
-//     // iView.LoadingBar.start();
-//     // Util.title(to.meta.title);
-//     // next();
-
-//     console.log('进入前校验')
-// });
-
-// router.afterEach((to, from, next) => {
-//     // iView.LoadingBar.finish();
-//     // window.scrollTo(0, 0);
-//     console.log('校验成功跳转')
-// });
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     // this route requires auth, check if logged in
+//     // if not, redirect to login page.
+//     if (!auth.loggedIn()) {
+//       next({
+//         path: '/login',
+//         query: { redirect: to.fullPath }
+//       })
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next() // 确保一定要调用 next()
+//   }
+// })
+// 更新页面title
+router.afterEach( (route) => {
+    document.title = route.meta.title;
+})
 
 
 /* eslint-disable no-new */

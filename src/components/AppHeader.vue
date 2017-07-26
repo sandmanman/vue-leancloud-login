@@ -1,8 +1,8 @@
 <template>
 <header class="app-header">
-    <el-menu theme="light" class="app-menu" mode="horizontal">
+    <el-menu theme="dark" class="app-menu" mode="horizontal">
         <el-menu-item index="0" class="logo">
-            <img src="../assets/logo.png" alt="Vue">
+            <img src="../assets/images/logo.png" alt="Vue">
         </el-menu-item>
     </el-menu>
 </header>
@@ -11,9 +11,6 @@
 <script>
 export default {
     name: 'AppHeader',
-    components: {
-
-    },
     data() {
         return {
             
