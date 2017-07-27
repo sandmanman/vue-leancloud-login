@@ -30,9 +30,9 @@
                                 placeholder="密码至少6位">
                             </el-input>
                         </el-form-item>
-                        <el-form-item label="确认密码" prop="passwordRe">
+                        <el-form-item label="确认密码" prop="passwordCheck">
                             <el-input 
-                                v-model="form.passwordRe" 
+                                v-model="form.passwordCheck" 
                                 type="password"
                                 placeholder="再次输入密码">
                             </el-input>
@@ -57,12 +57,23 @@
 export default {
     name: 'SignUp',
     data() {
+        // 二次密码校验
+        var passwordCheck = (rule, value, callback) => {
+            if ( value === '' ) {
+                callback(new Error('请再次输入密码'))
+            } else if( value !== this.form.password ) {
+                callback(new Error('两次密码输入不一致'))
+            } else {
+                callback()
+            }
+        };
+
         return {
             form: {
                 username: '',
                 email: '',
                 password: '',
-                passwordRe: ''
+                passwordCheck: ''
             },
             rules: {
                 username: [
@@ -77,17 +88,23 @@ export default {
                     { required: true, message: '请输入密码', trigger: 'blur' },
                     { min: 6, message: '密码至少6位', trigger: 'blur' }
                 ],
-                passwordRe: [
-                    { required: true, message: '请确认密码', trigger: 'blur' },
-                    { message: '两次输入密码不一致!', trigger: 'blur' }
+                passwordCheck: [
+                    { validator: passwordCheck, required: true, trigger: 'blur' },
                 ]
             },
-            disabled: true
+            disabled: false
         }
     },
     methods: {
         submitForm(form) {
-            console.log('注册')
+            this.$refs[form].validate((valid) => {
+                if(valid) {
+                    console.info('去注册')
+                } else {
+                    console.warn('校验失败')
+                    return false
+                }
+            })
         }
     }
 }
