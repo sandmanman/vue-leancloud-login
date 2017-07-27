@@ -99,11 +99,49 @@ export default {
         submitForm(form) {
             this.$refs[form].validate((valid) => {
                 if(valid) {
-                    console.info('去注册')
+                    this.signUpSubmit()
                 } else {
                     console.warn('校验失败')
                     return false
                 }
+            })
+        },
+        signUpSubmit() {
+            this.disabled = true
+            // leancloud 用户注册
+            let user = new this.$AV.User()
+            // 设置用户名
+            user.setUsername(this.form.username)
+            // 设置密码
+            user.setPassword(this.form.password)
+            // 设置邮箱
+            user.setEmail(this.form.email)
+
+            user.signUp().then((loginedUser) => {
+                this.$message({
+                    message: '注册成功',
+                    type: 'success'
+                });
+                // 跳转到登录页
+                this.$router.push('/login')
+            }, (error) => {
+                if (error.code === 202) {
+                    this.$message({
+                        showClose: true,
+                        message: '用户名已被使用，换一个试试',
+                        type: 'error'
+                    });
+                } else if(error.code === 203) {
+                    this.$message({
+                        showClose: true,
+                        message: '邮箱已被注册',
+                        type: 'error'
+                    });
+                } else {
+                    console.error(error)
+                }
+
+                this.disabled = false
             })
         }
     }
