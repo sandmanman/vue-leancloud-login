@@ -32,7 +32,7 @@
                             <el-button 
                             type="primary" 
                             size="large" 
-                            :disabled="isDisabled" 
+                            :disabled="!isDisabled"
                             @click="submitForm('form')">登录</el-button>
                         </el-form-item>
                     </el-form>
@@ -64,7 +64,7 @@ export default {
     },
     computed: {
         isDisabled() {
-            return this.form.email == '' || this.form.password == ''
+            return this.form.email !== '' && this.form.password !== ''
         }
     },
     methods: {
