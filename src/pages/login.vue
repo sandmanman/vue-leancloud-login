@@ -9,9 +9,9 @@
                     </router-link>
                 </el-row>
                 <div class="card-content">
-                    <el-form ref="form" :model="form" class="form-group">
+                    <el-form ref="form" :model="form" :rules="rules" class="form-group">
                         <el-form-item prop="email">
-                            <i class="iconfont icon-mine_fill"></i>
+                            <i class="iconfont icon-mail_fill"></i>
                             <el-input 
                                 v-model="form.email" 
                                 type="email"
@@ -32,7 +32,7 @@
                             <el-button 
                             type="primary" 
                             size="large" 
-                            :disabled="disabled" 
+                            :disabled="isDisabled" 
                             @click="submitForm('form')">登录</el-button>
                         </el-form-item>
                     </el-form>
@@ -51,12 +51,25 @@ export default {
                 email: '',
                 password: ''
             },
-            disabled: true
+            rules: {
+                email: [
+                    { required: true, message: '请输入邮箱', trigger: 'blur' },
+                    { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '请输入登录密码', trigger: 'blur' },
+                ]
+            }
+        }
+    },
+    computed: {
+        isDisabled() {
+            return this.form.email == '' || this.form.password == ''
         }
     },
     methods: {
         submitForm(form) {
-            console.log('登录')
+            console.log('ssss')
         }
     }
 }
