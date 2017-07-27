@@ -15,8 +15,8 @@ import Routers from './router'
 
 import App from './App'
 
-Vue.use(VueRouter)
 Vue.use(ElementUI)
+Vue.use(VueRouter)
 
 
 // router config

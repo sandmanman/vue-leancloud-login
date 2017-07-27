@@ -9,25 +9,33 @@
                     </router-link>
                 </el-row>
                 <div class="card-content">
-                    <div class="form-group">
-                        <el-input
-                            placeholder="输入邮箱"
-                            type="email"
-                            autocomplete="off"
-                            v-model="inputEmail">
-                        </el-input>
-                    </div>
-                    <div class="form-group">
-                        <el-input
-                            placeholder="输入密码"
-                            type="password"
-                            autocomplete="off"
-                            v-model="inputPwd">
-                        </el-input>
-                    </div>
-                    <div class="card-footer text-right">
-                        <el-button type="primary" size="large" :disabled="disabled" @click="submitForm()">登录</el-button>
-                    </div>
+                    <el-form ref="form" :model="form" class="form-group">
+                        <el-form-item prop="email">
+                            <i class="iconfont icon-mine_fill"></i>
+                            <el-input 
+                                v-model="form.email" 
+                                type="email"
+                                placeholder="输入邮箱"
+                                class="form-control-icon">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <i class="iconfont icon-lock_fill"></i>
+                            <el-input 
+                                v-model="form.password" 
+                                type="password"
+                                placeholder="密码"
+                                class="form-control-icon">
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item class="text-right">
+                            <el-button 
+                            type="primary" 
+                            size="large" 
+                            :disabled="disabled" 
+                            @click="submitForm('form')">登录</el-button>
+                        </el-form-item>
+                    </el-form>
                 </div>
             </el-card>
         </el-row>
@@ -39,13 +47,15 @@ export default {
     name: 'Login',
     data() {
         return {
-            inputEmail: '',
-            inputPwd: '',
+            form: {
+                email: '',
+                password: ''
+            },
             disabled: true
         }
     },
     methods: {
-        submitForm() {
+        submitForm(form) {
             console.log('登录')
         }
     }
@@ -55,6 +65,19 @@ export default {
 <style lang="scss" scoped>
 .card-cover-img {
     background-image: url('../assets/images/cover_bg_1.jpeg');
+}
+.auth-form-group {
+    .iconfont {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        z-index: 2;
+
+        color: #97a8be;
+        font-size: 18px;
+
+        transform: translateY(-50%);
+    }
 }
 </style>
 

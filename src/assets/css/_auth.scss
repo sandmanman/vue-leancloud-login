@@ -35,7 +35,8 @@
     .card-content {
         padding: 30px;
     }
-    .form-group {
-        margin-bottom: 20px;
+
+    .form-control-icon > input {
+        padding-left: 30px !important;
     }
 }

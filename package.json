@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "element-ui": "^1.4.0",
     "leancloud-storage": "^3.0.2",
     "vue": "^2.3.3",
