@@ -33,6 +33,7 @@
                             type="primary" 
                             size="large" 
                             :disabled="!isDisabled"
+                            :loading="isLoading"
                             @click="submitForm('form')">登录</el-button>
                         </el-form-item>
                     </el-form>
@@ -59,7 +60,8 @@ export default {
                 password: [
                     { required: true, message: '请输入登录密码', trigger: 'blur' },
                 ]
-            }
+            },
+            isLoading: false
         }
     },
     computed: {
@@ -69,7 +71,46 @@ export default {
     },
     methods: {
         submitForm(form) {
-            console.log('ssss')
+            this.$refs[form].validate((valid)=>{
+                if(valid) {
+                    this.loginSubmit()
+                } else if(error) {
+                    console.log(error)
+                }
+            })
+        },
+        resetForm() {
+            // 重置表单
+            this.$refs['form'].resetFields()
+        },
+        loginSubmit() {
+            this.$AV.User.logIn(this.form.email, this.form.password)
+                .then((loginedUser) => {
+                    this.isLoading = true
+                    // 登录成功跳转默认跳转到首页
+                    this.$router.push('/home')
+                    //console.log(loginedUser)
+                }, (error) => {
+                    this.isLoading = false
+
+                    if(error.code === 211) {
+                        this.$message({
+                            showClose: true,
+                            message: '用户不存在',
+                            type: 'error'
+                        })
+
+                        this.resetForm()
+                    } else if(error.code === 210) {
+                        this.$message({
+                            showClose: true,
+                            message: '用户名和密码不匹配',
+                            type: 'error'
+                        })
+                    } else {
+                        console.log(error)
+                    }
+                })
         }
     }
 }
