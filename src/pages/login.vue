@@ -64,6 +64,14 @@ export default {
             isLoading: false
         }
     },
+    created() {
+        let currentUser = new this.$AV.User.current()
+        if(currentUser) {
+            this.$router.push('/home')
+        } else {
+            console.warn('没有登录')
+        }
+    },
     computed: {
         isDisabled() {
             return this.form.email !== '' && this.form.password !== ''

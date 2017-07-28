@@ -5,9 +5,10 @@ import Home from '../pages/home'
 const routers = [
     {
         path: '/',
-        component: Login,
+        component: Home,
         meta: {
-            title: '登录'
+            title: '主页',
+            auth: true
         }
     },{
         path: '/login',
