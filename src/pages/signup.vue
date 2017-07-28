@@ -109,7 +109,7 @@ export default {
         signUpSubmit() {
             this.disabled = true
             // leancloud 用户注册
-            let user = new this.$AV.User()
+            let user = new AV.User()
             // 设置用户名
             user.setUsername(this.form.username)
             // 设置密码

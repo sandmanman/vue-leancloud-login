@@ -21,7 +21,7 @@
             }
         },
         created() {
-            let currentUser = this.$AV.User.current()
+            let currentUser = AV.User.current()
             if (!currentUser) {
                 this.$router.push('/login')
             }

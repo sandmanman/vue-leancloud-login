@@ -52,7 +52,7 @@ export default {
     beforeRouteEnter(to, from, next) {
         // 进入路由前判断是否已登录
         next(VM => {
-            if( VM.$AV.User.current() ) {
+            if( AV.User.current() ) {
                 VM.$router.push('/')
             } else {
                 return false
@@ -98,7 +98,7 @@ export default {
             this.$refs['form'].resetFields()
         },
         loginSubmit() {
-            this.$AV.User.logIn(this.form.email, this.form.password)
+            AV.User.logIn(this.form.email, this.form.password)
                 .then((loginedUser) => {
                     this.isLoading = true
                     // 登录成功跳转默认跳转到首页

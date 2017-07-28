@@ -27,11 +27,13 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            users: null
+            users: {
+                name: null
+            }
         }
     },
     created() {
-        let currentUser = this.$AV.User.current()
+        let currentUser = AV.User.current()
         if (currentUser) {
             this.users = {
                 name: currentUser.get('username')
@@ -40,7 +42,7 @@ export default {
     },
     methods: {
         signOut() {
-            this.$AV.User.logOut().then(() => {
+            AV.User.logOut().then(() => {
                 this.$router.push('/login')
                 // 登出后跳转到登录页面
                 //this.$message('正在退出...')
