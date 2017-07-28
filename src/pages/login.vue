@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper auth-wrapper">
         <el-row type="flex" align="middle" justify="center" class="auth-form-group">
-            <el-card :body-style="{ padding: '0px', width: '570px' }">
+            <el-card :body-style="{ padding: '0px', width: '460px' }">
                 <el-row type="flex" align="middle" justify="space-between" class="card-cover-img">
                     <h3 class="card-title">登录</h3>
                     <router-link :to="{name: 'signup'}" class="quick-link text-white">
@@ -11,7 +11,9 @@
                 <div class="card-content">
                     <el-form ref="form" :model="form" :rules="rules" class="form-group">
                         <el-form-item prop="email">
-                            <i class="iconfont icon-mail_fill"></i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-mail_fill"></use>
+                            </svg> 
                             <el-input 
                                 v-model="form.email" 
                                 type="email"
@@ -20,7 +22,9 @@
                             </el-input>
                         </el-form-item>
                         <el-form-item prop="password">
-                            <i class="iconfont icon-lock_fill"></i>
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-lock_fill"></use>
+                            </svg>
                             <el-input 
                                 v-model="form.password" 
                                 type="password"
@@ -45,6 +49,16 @@
 
 <script>
 export default {
+    beforeRouteEnter(to, from, next) {
+        // 进入路由前判断是否已登录
+        next(VM => {
+            if( VM.$AV.User.current() ) {
+                VM.$router.push('/')
+            } else {
+                return false
+            }
+        })
+    },
     name: 'Login',
     data() {
         return {
@@ -62,14 +76,6 @@ export default {
                 ]
             },
             isLoading: false
-        }
-    },
-    created() {
-        let currentUser = new this.$AV.User.current()
-        if(currentUser) {
-            this.$router.push('/home')
-        } else {
-            console.warn('没有登录')
         }
     },
     computed: {
@@ -129,14 +135,16 @@ export default {
     background-image: url('../assets/images/cover_bg_1.jpeg');
 }
 .auth-form-group {
-    .iconfont {
+    .icon {
         position: absolute;
         left: 10px;
         top: 50%;
         z-index: 2;
 
-        color: #97a8be;
-        font-size: 18px;
+        width: 18px;
+        height: 18px;
+
+        fill: #97a8be;
 
         transform: translateY(-50%);
     }

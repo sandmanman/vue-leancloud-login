@@ -1,0 +1,42 @@
+//
+// app header
+//
+
+.app-header {
+    position: relative;
+}
+.app-header-aside {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    z-index: 10;
+
+    transform: translateY(-50%);
+
+    .avatar {
+        font-size: 30px;
+        vertical-align: middle;
+    }
+
+    .user-dropdown-link {
+        color: #fff;
+
+        svg.icon {
+            width: 30px;
+            height: 30px;
+
+            vertical-align: middle;
+        }
+    }
+}
+
+.app-menu {
+    border-radius: 0;
+
+    .logo {
+        > img {
+            max-height: 30px;
+            vertical-align: middle;
+        }
+    }
+}

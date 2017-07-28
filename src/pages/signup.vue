@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper auth-wrapper">
         <el-row type="flex" align="middle" justify="center" class="auth-form-group">
-            <el-card :body-style="{ padding: '0px', width: '570px' }">
+            <el-card :body-style="{ padding: '0px', width: '460px' }">
                 <el-row type="flex" align="middle" justify="space-between" class="card-cover-img">
                     <h3 class="card-title">注册</h3>
                     <router-link :to="{name: 'login'}" class="quick-link text-white">

@@ -19,6 +19,12 @@
             return {
                 msg: 'Hellow vue!'
             }
+        },
+        created() {
+            let currentUser = this.$AV.User.current()
+            if (!currentUser) {
+                this.$router.push('/login')
+            }
         }
     }
 </script>
